@@ -48,7 +48,7 @@ export default function NoteForm({ onAdd }: NoteFormProps) {
                 <option value="education">Education</option>
                 <option value="coding">Coding</option>    
             </select>
-            <button className="bg-gray-900 mt-2 px-2 py-1 rounded-md hover:cursor-pointer"
+            <button className="bg-gray-900 mt-2 px-2 py-1 rounded-md hover:cursor-pointer hover:scale-[1.1] transition duration-100"
                     onClick={handleSubmit}>Add Note
             </button>
             {error && <p className="text-red-400">{error}</p>}
