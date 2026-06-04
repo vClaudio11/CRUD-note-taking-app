@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A CRUD note-taking app built with React, TypeScript, and Tailwind CSS. Notes persist across
+all sessions using localStorage
 
-Currently, two official plugins are available:
+![Notes App Screenshot](./screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Create notes with a title, body, and category     (Work, Education, Coding)
+- Edit notes in place with pre-filled inputs
+- Delete notes
+- Notes persist on page refresh using localStorage
+- Form validation so empty fields cannot be submitted
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Tailwind CSS
+- Vite
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/vclaudio11/notes-app.git
+cd notes-app
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/
+│   ├── NoteCard.tsx    # Displays a single note with edit and delete
+│   └── NoteForm.tsx    # Form for creating new notes
+├── types.ts            # Shared Note interface and NoteType union
+└── App.tsx             # Root component — owns all state
+```
+
+## Concepts Practised
+
+- `useState` for form and edit state management
+- `useEffect` for localStorage persistence
+- Props and callback props (`onAdd`, `onEdit`, `onDelete`)
+- Conditional rendering for edit mode
+- Lazy state initialiser for reading localStorage   on mount
+- `crypto.randomUUID()` for unique note IDs
+- TypeScript interfaces and union types
+
+## Roadmap
+
+-[ ] create a dedicated editing page for each note
+-[ ] allow notes to hold documents relating to the note
+-[ ] allow notes to be placed in folders 
+-[ ] allows you to choose which notes you want to convert to .md to store directly in your obsidian
