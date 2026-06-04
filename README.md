@@ -52,7 +52,7 @@ src/
 
 ## Roadmap
 
--[ ] create a dedicated editing page for each note
--[ ] allow notes to hold documents relating to the note
--[ ] allow notes to be placed in folders 
--[ ] allows you to choose which notes you want to convert to .md to store directly in your obsidian
+- [ ] create a dedicated editing page for each note
+- [ ] allow notes to hold documents relating to the note
+- [ ] allow notes to be placed in folders 
+- [ ] allows you to choose which notes you want to convert to .md to store directly in your obsidian
