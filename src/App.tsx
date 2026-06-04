@@ -18,6 +18,10 @@ function App() {
     setNotes([... notes, note])
   }
 
+  function handleDelete(id: string) {
+    setNotes(notes.filter(n => n.id !== id))
+  }
+
   return (
     // Main landing page
     <div className="min-h-height bg-gray-900 px-8 py-12">
@@ -25,7 +29,7 @@ function App() {
       {<NoteForm onAdd={handleAdd} />}
       <div className="grid grid-cols-3 gap-4">
       {notes.map(note => (
-        <NoteCard key={note.id} note={note} />
+        <NoteCard key={note.id} note={note} onDelete={handleDelete}/>
       ))}
       </div>
     </div>
