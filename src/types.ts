@@ -6,7 +6,3 @@ export interface Note {
     body: string
     type: NoteType
 }
-
-export interface NoteFormProps {
-    onAdd: (note: Note) => void
-}

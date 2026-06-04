@@ -1,22 +1,70 @@
-import type { Note } from "../types";
+import { useState } from "react";
+import type { Note, NoteType } from "../types";
 
 interface NoteCardProp {
     note: Note
     onDelete: (id: string) => void
+    onEdit: (note: Note) => void
 }
 
-export default function NoteCard({ note, onDelete }: NoteCardProp) {
-    
+export default function NoteCard({ note, onDelete, onEdit }: NoteCardProp) {
+    const [isEditing, setIsEditing] = useState(false)
+    const [card, setCard] = useState({ title: "", body: "", type: "work" })
+
     function handleDelete() {
         onDelete(note.id)
     }
+
+    function handleEdit() {
+        const updatedNote = {
+            id: note.id,
+            title: card.title,
+            body: card.body,
+            type: card.type as NoteType
+        }    
+        onEdit(updatedNote)
+        setIsEditing(false)
+    }
+
+    function checkEdit() {
+        setIsEditing(true)
+        setCard({ title: note.title, body: note.body, type: note.type })
+    }
+
     // Display the note
     return (
         <div className="bg-gray-800 px-4 py-2 flex flex-col text-white rounded-xl hover:opacity-90">
-            <h2 className="text-xl">{note.title}</h2>
-            <p className="text-gray-400 mb-4">{note.type}</p>
-            <p className="text-sm">{note.body}</p>
-            <button onClick={handleDelete}>Delete</button>
+            {isEditing ? (
+                <div>
+                    <input
+                        value={card.title}
+                        onChange={(e) => setCard({...card, title: e.target.value })}
+                        placeholder="New title"
+                    />
+                    <input
+                        value={card.body}
+                        onChange={(e) => setCard({...card, body: e.target.value })}
+                        placeholder="New body"
+                    />
+                    <select
+                        value={card.type}
+                        onChange={(e) => setCard({...card, type: e.target.value as NoteType })}
+                    >
+                        <option value={"work"}>Work</option>
+                        <option value={"education"}>Education</option>
+                        <option value={"coding"}>Coding</option>
+                    </select>
+                    <button onClick={handleEdit} >Set changes</button>
+                </div>
+            ) : (
+                <>
+                <h2 className="text-xl">{note.title}</h2>
+                <p className="text-gray-400 mb-4">{note.type}</p>
+                <p className="text-sm">{note.body}</p>
+                <button onClick={handleDelete}>Delete</button>
+                <button onClick={checkEdit}>Edit</button>
+                </>
+            )}
         </div>
     )
 } 

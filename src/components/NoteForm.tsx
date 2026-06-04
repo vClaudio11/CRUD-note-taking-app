@@ -41,7 +41,7 @@ export default function NoteForm({ onAdd }: NoteFormProps) {
             />
             <select
                 className="bg-gray-700 px-2 py-1 rounded-sm hover:opacity-90"
-                value="form.type"
+                value={form.type}
                 onChange={(e) => setForm({...form, type: e.target.value as NoteType })}
             >
                 <option value="work">Work</option>

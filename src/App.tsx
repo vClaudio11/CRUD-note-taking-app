@@ -22,6 +22,10 @@ function App() {
     setNotes(notes.filter(n => n.id !== id))
   }
 
+  function handleEdit(updatedNote: Note) {
+    setNotes(notes.map(n => n.id === updatedNote.id ? updatedNote : n))
+  }
+
   return (
     // Main landing page
     <div className="min-h-height bg-gray-900 px-8 py-12">
@@ -29,7 +33,7 @@ function App() {
       {<NoteForm onAdd={handleAdd} />}
       <div className="grid grid-cols-3 gap-4">
       {notes.map(note => (
-        <NoteCard key={note.id} note={note} onDelete={handleDelete}/>
+        <NoteCard key={note.id} note={note} onDelete={handleDelete} onEdit={handleEdit}/>
       ))}
       </div>
     </div>
