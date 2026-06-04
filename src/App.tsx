@@ -1,10 +1,18 @@
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import NoteCard from "./components/NoteCard"
 import type { Note } from "./types"
 import NoteForm from "./components/NoteForm"
 
 function App() {
-  const [notes, setNotes] = useState<Note[]>([])
+  const [notes, setNotes] = useState<Note[]>(() => {
+  const stored = localStorage.getItem("notes")
+  return stored ? JSON.parse(stored) : []
+  })
+
+  // On every update for notes, save the data
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes))
+  }, [notes])
 
   function handleAdd(note: Note) {
     setNotes([... notes, note])
