@@ -15,7 +15,7 @@ function App() {
     <div className="min-h-height bg-gray-900 px-8 py-12">
       <h1 className="text-3xl font-bold text-white mb-8">My notes</h1>
       {<NoteForm onAdd={handleAdd} />}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-4">
       {notes.map(note => (
         <NoteCard key={note.id} note={note} />
       ))}
