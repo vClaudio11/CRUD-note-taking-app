@@ -27,14 +27,14 @@ export default function NoteForm({ onAdd }: NoteFormProps) {
     return (
         <div className="flex flex-col items-center justify-center mt-8 mb-4 text-white border-2 bg-gray-800 py-4 gap-2 rounded-md">
             <h2 className="text-2xl">Create note</h2>
-            <input
-                className="bg-gray-700 px-2 py-1 rounded-sm hover:opacity-90"
+            <textarea
+                className="bg-gray-700 w-48 h-8 px-2 py-1 rounded-sm caret-gray-200 hover:opacity-90"
                 value={form.title}
                 onChange={(e) => setForm({...form, title: e.target.value})}
                 placeholder="Title"
             />
-            <input
-                className="bg-gray-700 px-2 py-1 rounded-sm hover:opacity-90"
+            <textarea
+                className="bg-gray-700 px-2 py-1 w-48 h-32 rounded-sm hover:opacity-90"
                 value={form.body}
                 onChange={(e) => setForm({...form, body: e.target.value})}
                 placeholder="Body"
